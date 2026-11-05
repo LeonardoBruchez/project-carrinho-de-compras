@@ -24,6 +24,15 @@ const products = [
     price: 350.00,
     image: "./images/headset.jpg",
     quantity: 2
+  },
+
+  {
+    id: 4,
+    name: "Mouse Logitech G403",
+    category: "Periféricos",
+    price: 240.00,
+    image: "./images/mouse.jpg",
+    quantity: 3
   }
 ]
 
@@ -81,10 +90,35 @@ function renderCartItems() {
 
 
 
-
+    subtotalElement.textContent = `R$ ${subtotal.toFixed(2)}`
     cartItemsSection.appendChild(row);
   });
 
+
+
+
+
+}
+
+function increaseQuantity(productId) {
+  const product = products.find(x => x.id == productId)
+
+  if (product) {
+    product.quantity++
+    renderCartItems()
+  }
+
+  console.log(product)
+}
+
+function decreaseQuantity(productId) {
+  const product = products.find(x => x.id == productId)
+
+
+  if (product && product.quantity > 1) {
+    product.quantity--
+    renderCartItems()
+  }
 }
 // para quando dar o load na página.
 document.addEventListener('DOMContentLoaded', renderCartItems);
